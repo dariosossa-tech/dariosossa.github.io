@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal de Inscripción Estudiantil</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #1abc9c;
+            --light-color: #ecf0f1;
+            --dark-color: #2c3e50;
+            --success-color: #27ae60;
+            --shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            --border-radius: 10px;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            box-shadow: var(--shadow);
+        }
+
+        .logo {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .logo i {
+            color: var(--accent-color);
+        }
+
+        header h1 {
+            color: white;
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Main Content */
+        .main-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            padding: 3rem 0;
+        }
+
+        .welcome-section {
+            flex: 1;
+            min-width: 300px;
+            background: white;
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+        }
+
+        .qr-section {
+            flex: 1;
+            min-width: 300px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: white;
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+        }
+
+        .welcome-message {
+            margin-bottom: 2rem;
+        }
+
+        .welcome-message p {
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .feature {
+            flex: 1;
+            min-width: 200px;
+            padding: 1rem;
+            background-color: var(--light-color);
+            border-left: 4px solid var(--accent-color);
+            border-radius: 5px;
+        }
+
+        .feature i {
+            color: var(--accent-color);
+            margin-right: 10px;
+        }
+
+        /* QR Code */
+        .qr-container {
+            text-align: center;
+            padding: 1.5rem;
+            background-color: #f8f9fa;
+            border-radius: var(--border-radius);
+            margin-bottom: 1.5rem;
+            width: 100%;
+            max-width: 300px;
+        }
+
+        .qr-code {
+            width: 200px;
+            height: 200px;
+            margin: 0 auto 1.5rem;
+            background-color: white;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        .qr-placeholder {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #f1f1f1 25%, #e0e0e0 25%, #e0e0e0 50%, #f1f1f1 50%, #f1f1f1 75%, #e0e0e0 75%);
+            background-size: 20px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 5px;
+            position: relative;
+        }
+
+        .qr-placeholder::before {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: 
+                /* Patrón de cuadrados QR */
+                repeating-linear-gradient(to right, #333 0px, #333 4px, transparent 4px, transparent 10px),
+                repeating-linear-gradient(to bottom, #333 0px, #333 4px, transparent 4px, transparent 10px),
+                /* Marcadores QR */
+                linear-gradient(to bottom, transparent 0%, transparent 30%, #333 30%, #333 70%, transparent 70%),
+                linear-gradient(to right, transparent 0%, transparent 30%, #333 30%, #333 70%, transparent 70%);
+            background-size: 100% 100%, 100% 100%, 40px 40px, 40px 40px;
+            background-position: 0 0, 0 0, 10px 10px, 10px 10px;
+            background-repeat: no-repeat;
+            opacity: 0.7;
+        }
+
+        .qr-instructions {
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .qr-instructions ol {
+            text-align: left;
+            padding-left: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .qr-instructions li {
+            margin-bottom: 0.5rem;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            box-shadow: 0 4px 6px rgba(50, 150, 250, 0.3);
+        }
+
+        .btn:hover {
+            background-color: var(--primary-color);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(50, 150, 250, 0.4);
+        }
+
+        .btn i {
+            margin-right: 8px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .contact-item i {
+            color: var(--accent-color);
+        }
+
+        .copyright {
+            margin-top: 1rem;
+            opacity: 0.8;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+            
+            .logo {
+                font-size: 2rem;
+            }
+            
+            .main-content {
+                flex-direction: column;
+            }
+            
+            .qr-section, .welcome-section {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo {
+                flex-direction: column;
+                gap: 5px;
+            }
+            
+            .contact-info {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .features {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="logo">
+                <i class="fas fa-graduation-cap"></i>
+                <span>INSTITUTO DE FORMACIÓN PROFESIONAL</span>
+            </div>
+            <h1>Bienvenidos Estudiantes</h1>
+            <p class="subtitle">Tu futuro comienza aquí. Accede a nuestros cursos de calidad con instructores expertos y recursos de última generación.</p>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container">
+        <div class="main-content">
+            <!-- Welcome Section -->
+            <section class="welcome-section">
+                <div class="welcome-message">
+                    <h2>¡Bienvenido a Nuestra Plataforma Educativa!</h2>
+                    <p>Estamos encantados de darte la bienvenida a nuestra comunidad estudiantil. Aquí encontrarás una amplia variedad de cursos diseñados para potenciar tus habilidades y conocimientos.</p>
+                    <p>Nuestra institución se compromete a ofrecerte una educación de calidad con enfoque práctico y actualizado a las necesidades del mercado laboral.</p>
+                    <p>Para facilitar tu inscripción a nuestros cursos, hemos implementado un sistema rápido mediante código QR. Escanea el código con tu dispositivo móvil y accede al formulario de inscripción en segundos.</p>
+                </div>
+                
+                <h3>¿Por qué estudiar con nosotros?</h3>
+                <div class="features">
+                    <div class="feature">
+                        <i class="fas fa-chalkboard-teacher"></i>
+                        <h4>Instructores Expertos</h4>
+                        <p>Profesionales con amplia experiencia en sus campos.</p>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-laptop-code"></i>
+                        <h4>Contenido Actualizado</h4>
+                        <p>Cursos diseñados con las últimas tendencias y tecnologías.</p>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-certificate"></i>
+                        <h4>Certificación Oficial</h4>
+                        <p>Diplomas reconocidos por la industria.</p>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-users"></i>
+                        <h4>Comunidad Activa</h4>
+                        <p>Networking con profesionales y compañeros.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- QR Section -->
+            <section class="qr-section">
+                <h2>Inscripción Rápida con QR</h2>
+                <div class="qr-container">
+                    <div class="qr-code">
+                        <div class="qr-placeholder"></div>
+                    </div>
+                    <p>Escanea este código QR para acceder al formulario de inscripción</p>
+                </div>
+                
+                <div class="qr-instructions">
+                    <h3>¿Cómo inscribirse?</h3>
+                    <ol>
+                        <li>Abre la cámara de tu teléfono o una aplicación de escaneo QR</li>
+                        <li>Apunta al código QR con tu dispositivo</li>
+                        <li>Sigue el enlace al formulario de inscripción</li>
+                        <li>Completa tus datos y selecciona tu curso preferido</li>
+                        <li>Recibirás una confirmación por correo electrónico</li>
+                    </ol>
+                </div>
+                
+                <p style="margin-bottom: 1.5rem;">Si tienes problemas con el código QR, también puedes hacer clic en el botón:</p>
+                <a href="#" class="btn" id="inscriptionLink">
+                    <i class="fas fa-file-signature"></i> Acceder al Formulario de Inscripción
+                </a>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="contact-info">
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <span>inscripciones@instituto.edu</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <span>+34 912 345 678</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Calle de la Educación, 123, Madrid</span>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 Instituto de Formación Profesional. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Simulación de un código QR funcional
+        document.getElementById('inscriptionLink').addEventListener('click', function(e) {
+            e.preventDefault();
+            alert('Redirigiendo al formulario de inscripción...\n\nEn una implementación real, esto llevaría al formulario de inscripción.');
+            // En un caso real, aquí iría: window.location.href = 'https://formulario-inscripcion.com';
+        });
+
+        // Generar un patrón más realista para el QR
+        document.addEventListener('DOMContentLoaded', function() {
+            const qrPlaceholder = document.querySelector('.qr-placeholder');
+            
+            // Crear un patrón de cuadrados similar a un QR
+            const squares = 12;
+            const squareSize = 100 / squares;
+            
+            // Limpiar el placeholder
+            qrPlaceholder.innerHTML = '';
+            
+            // Crear un canvas para el patrón QR simulado
+            const canvas = document.createElement('canvas');
+            canvas.width = 200;
+            canvas.height = 200;
+            const ctx = canvas.getContext('2d');
+            
+            // Fondo blanco
+            ctx.fillStyle = 'white';
+            ctx.fillRect(0, 0, 200, 200);
+            
+            // Patrón de cuadrados aleatorios (simulando QR)
+            ctx.fillStyle = '#333';
+            
+            // Marcadores de posición QR (esquinas)
+            // Marcador superior izquierdo
+            ctx.fillRect(10, 10, 50, 50);
+            ctx.clearRect(20, 20, 30, 30);
+            ctx.fillRect(25, 25, 20, 20);
+            
+            // Marcador superior derecho
+            ctx.fillRect(140, 10, 50, 50);
+            ctx.clearRect(150, 20, 30, 30);
+            ctx.fillRect(155, 25, 20, 20);
+            
+            // Marcador inferior izquierdo
+            ctx.fillRect(10, 140, 50, 50);
+            ctx.clearRect(20, 150, 30, 30);
+            ctx.fillRect(25, 155, 20, 20);
+            
+            // Patrón aleatorio interno
+            for(let x = 0; x < squares; x++) {
+                for(let y = 0; y < squares; y++) {
+                    // Evitar áreas de marcadores
+                    if((x < 3 && y < 3) || (x < 3 && y >= 9) || (x >= 9 && y < 3)) continue;
+                    
+                    if(Math.random() > 0.5) {
+                        const posX = 10 + x * 15;
+                        const posY = 10 + y * 15;
+                        ctx.fillRect(posX, posY, 10, 10);
+                    }
+                }
+            }
+            
+            // Añadir el logo institucional en el centro
+            ctx.fillStyle = '#1abc9c';
+            ctx.font = 'bold 20px Arial';
+            ctx.textAlign = 'center';
+            ctx.fillText('IFP', 100, 110);
+            ctx.font = 'bold 10px Arial';
+            ctx.fillText('EDUCACIÓN', 100, 125);
+            
+            // Convertir canvas a imagen y añadir al placeholder
+            const qrImage = new Image();
+            qrImage.src = canvas.toDataURL();
+            qrImage.style.width = '100%';
+            qrImage.style.height = '100%';
+            qrImage.style.borderRadius = '5px';
+            qrPlaceholder.appendChild(qrImage);
+        });
+    </script>
+</body>
+</html>
